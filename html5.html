@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+ 	<link rel="stylesheet" type="text/css" href="res/semantic.css">
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+ 	<script src="res/semantic.js"></script>
+
+</head>
+<body>
+	<div class="ui  column middle aligned relaxed fitted stackable grid">
+	  <div class="column">
+	    <div class="ui form segment">
+	      <div class="field">
+	        <label>Username</label>
+	        <div class="ui left icon input">
+	          <input type="text" placeholder="Username">
+	          <i class="user icon"></i>
+	        </div>
+	      </div>
+	      <div class="field">
+	        <label>Password</label>
+	        <div class="ui left icon input">
+	          <input type="password">
+	          <i class="lock icon"></i>
+	        </div>
+	      </div>
+	      <div class="ui blue submit button" id="btn_login">Login</div>
+	    </div>
+	  </div>
+	</div>
+	<script type="text/javascript">
+		$('#btn_login').click(function(event) {
+			console.dir(event);
+		});
+	</script>
+</body>
+</html>
