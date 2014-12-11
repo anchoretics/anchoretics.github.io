@@ -1,0 +1,65 @@
+Loginlo<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+
+ 	<link rel="stylesheet" type="text/css" href="res/semantic.css">
+
+    <script src="https://leancloud.cn/scripts/lib/av-0.4.6.min.js"></script>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+ 	<script src="res/semantic.js"></script>
+
+</head>
+<body>
+	<div class="ui  column middle aligned relaxed fitted stackable grid">
+	  <div class="column">
+	    <div class="ui form segment">
+	      <div class="field">
+	        <label>Username</label>
+	        <div class="ui left icon input">
+	          <input type="text" placeholder="Username" id="Username">
+	          <i class="user icon"></i>
+	        </div>
+	      </div>
+	      <div class="field">
+	        <label>Password</label>
+	        <div class="ui left icon input">
+	          <input type="password" id="password">
+	          <i class="lock icon"></i>
+	        </div>
+	      </div>
+	      <div class="ui blue submit button" id="btn_login">登录</div>
+	      <div class="ui blue submit button" id="btn_logout">注销</div>
+	    </div>
+	  </div>
+	</div>
+	<script type="text/javascript">
+		AV.initialize("bbjzi45i84rwcioiluudwtktbnhni3brl1ffy42dxygroe7y", "ncunc6teumejhog8eay59i576g9xwf6ctaavj6yrl23rvkil");
+
+		$('#btn_login').click(function(event) {
+			AV.User.logIn("myname", "my pass", {
+			  success: function(user) {
+			  	// alert("登录成功：" + user.getUsername());
+				window.location.href = window.location.href;
+			  },
+			  error: function(user, error) {
+			  	alert("登录失败：" + error.message);
+			  }
+			});
+		});
+
+		var currentUser = AV.User.current();
+		if (currentUser) {
+		   $('#btn_logout').show();
+		   $('#btn_logout').text($('#btn_logout').text()+" "+currentUser.getUsername());
+		} else {
+		   $('#btn_logout').hide();
+		}
+		$('#btn_logout').click(function(event){
+			AV.User.logOut();
+			window.location.href = window.location.href;
+		});
+	</script>
+</body>
+</html>

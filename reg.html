@@ -1,0 +1,64 @@
+Loginlo<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login</title>
+
+ 	<link rel="stylesheet" type="text/css" href="res/semantic.css">
+
+    <script src="https://leancloud.cn/scripts/lib/av-0.4.6.min.js"></script>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+ 	<script src="res/semantic.js"></script>
+
+</head>
+<body>
+	<div class="ui  column middle aligned relaxed fitted stackable grid">
+	  <div class="column">
+	    <div class="ui form segment">
+	      <div class="field">
+	        <label>Username</label>
+	        <div class="ui left icon input">
+	          <input type="text" placeholder="Username" id="username">
+	          <i class="user icon"></i>
+	        </div>
+	      </div>
+	      <div class="field">
+	        <label>Password</label>
+	        <div class="ui left icon input">
+	          <input type="password" id="password">
+	          <i class="lock icon"></i>
+	        </div>
+	      </div>
+	      <div class="ui blue submit button" id="btn_reg">注册</div>
+	    </div>
+	  </div>
+	</div>
+	<script type="text/javascript">
+		AV.initialize("bbjzi45i84rwcioiluudwtktbnhni3brl1ffy42dxygroe7y", "ncunc6teumejhog8eay59i576g9xwf6ctaavj6yrl23rvkil");
+
+		var currentUser = AV.User.current();
+		if (currentUser) {
+			alert(currentUser.id);
+		} else {
+
+		}
+
+		$('#btn_reg').click(function(event) {
+			var user = new AV.User();
+			user.setUsername($('#username').val());
+			user.setPassword($('#password').val());
+			user.signUp(null, {
+			  success: function(user) {
+			  	console.dir(user);
+				// user.set("ACL","{"role:Admin":{"read":true,"write":true},"5489a549e4b094fb5403bbb6":{"read":true,"write":true}}");
+
+			  },
+			  error: function(user, error) {
+			    // Show the error message somewhere and let the user try again.
+			    alert("Error: " + error.code + " " + error.message);
+			  }
+			});
+		});
+	</script>
+</body>
+</html>
